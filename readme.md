@@ -126,7 +126,7 @@ Le cookie YGG est une partie cruciale de la configuration. Il permet à YGG-Scra
 
    Par exemple :
    ```
-   yggxf_user=144387%2C9fsefesWzKJPPftWSJ0uXgrdgd7XFSJ0nwSOk9uu0vaO; v21_promo_details=eyJjb3VudGRvd25fZGF0ZSI6IjA4LzEwLzIwMjQgMjM6NTk6NTkiLCJ0cyI6MTcyMzMyNzE5OX0=; ygg_=p2gmfsjbhlgfrlspkmmflnrt48vb078d
+   yggxf_user=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx; v21_promo_details=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=; ygg_=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
    ```
 
 7. Utilisez cette chaîne complète comme valeur pour la variable d'environnement `YGG_COOKIE` dans votre `docker-compose.yml`.
