@@ -85,6 +85,8 @@ Ce projet combine YGG-Scrappey, un proxy pour YGG, avec Prowlarr pour faciliter 
    cd ygg-scrappey-prowlarr
    ```
 
+1.1 Ou utilisez directement le dépôt Docker Hub : https://hub.docker.com/repository/docker/tiffamoji/ygg-scrappey/general et passez directement à l'étape 3.
+
 2. Copiez le fichier `docker-compose.yml.example` en `docker-compose.yml` et modifiez-le pour configurer vos variables d'environnement :
    ```
    cp docker-compose.yml.example docker-compose.yml
