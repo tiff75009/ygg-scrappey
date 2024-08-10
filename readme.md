@@ -7,6 +7,10 @@ Ce projet combine YGG-Scrappey, un proxy pour YGG, avec Prowlarr pour faciliter 
 - Docker
 - Docker Compose
 - Un serveur avec Squid Proxy (voir la section Installation de Squid)
+- Une clé API Scrappey (https://scrappey.com/)
+  - Inscrivez-vous sur le site de Scrappey
+  - Obtenez votre clé API dans les paramètres de votre compte
+  - Cette clé est nécessaire pour contourner les protections anti-bot
 
 ## Installation
 
