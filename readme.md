@@ -87,7 +87,7 @@ Ce projet combine YGG-Scrappey, un proxy pour YGG, avec Prowlarr pour faciliter 
    ```
    Modifiez les valeurs suivantes dans `docker-compose.yml` :
    - `SCRAPPEY_KEY`: Votre clé API Scrappey
-   - `YGG_COOKIE`: Votre cookie YGG
+   - `YGG_COOKIE`: Votre cookie YGG (voir la section "Configuration du cookie YGG" ci-dessous)
    - `HTTP_PROXY`: L'URL de votre proxy Squid (ex: `http://username:password@votre_ip:3128`)
    - `SERVER_IP`: L'adresse IP de votre serveur
 
@@ -96,12 +96,67 @@ Ce projet combine YGG-Scrappey, un proxy pour YGG, avec Prowlarr pour faciliter 
    docker-compose up -d
    ```
 
+## Configuration du cookie YGG
+
+Le cookie YGG est une partie cruciale de la configuration. Il permet à YGG-Scrappey de s'authentifier auprès du site YGG. Voici comment obtenir et configurer correctement le cookie :
+
+1. Connectez-vous à votre compte YGG dans votre navigateur.
+
+2. Ouvrez les outils de développement (F12 sur la plupart des navigateurs).
+
+3. Allez dans l'onglet "Application" (Chrome) ou "Stockage" (Firefox).
+
+4. Dans la section "Cookies", sélectionnez le domaine YGG.
+
+5. Recherchez les cookies suivants :
+   - `yggxf_user`
+   - `v21_promo_details`
+   - `ygg_`
+
+6. Copiez la valeur de ces trois cookies et combinez-les dans le format suivant :
+   ```
+   yggxf_user=VALEUR; v21_promo_details=VALEUR; ygg_=VALEUR
+   ```
+
+   Par exemple :
+   ```
+   yggxf_user=144387%2C9fsefesWzKJPPftWSJ0uXgrdgd7XFSJ0nwSOk9uu0vaO; v21_promo_details=eyJjb3VudGRvd25fZGF0ZSI6IjA4LzEwLzIwMjQgMjM6NTk6NTkiLCJ0cyI6MTcyMzMyNzE5OX0=; ygg_=p2gmfsjbhlgfrlspkmmflnrt48vb078d
+   ```
+
+7. Utilisez cette chaîne complète comme valeur pour la variable d'environnement `YGG_COOKIE` dans votre `docker-compose.yml`.
+
+**Important** : 
+- N'incluez PAS le cookie `cf_clearance` s'il est présent. Ce cookie est géré automatiquement par YGG-Scrappey.
+- Assurez-vous de ne pas inclure d'espaces supplémentaires dans la chaîne de cookie.
+- Le cookie est sensible et ne doit pas être partagé. Gardez-le confidentiel.
+
+Votre cookie YGG peut expirer après un certain temps. Si vous rencontrez des problèmes de connexion, essayez de mettre à jour le cookie en suivant ces étapes à nouveau.
+
+## Obtenir le cookie YGG et le User-Agent
+
+Pour obtenir le cookie YGG et le User-Agent nécessaires à la configuration :
+
+1. Connectez-vous à votre compte YGG dans votre navigateur.
+2. Ouvrez les outils de développement (F12 sur la plupart des navigateurs).
+3. Allez dans l'onglet "Network" (Réseau).
+4. Actualisez la page YGG.
+5. Dans la liste des requêtes, cliquez sur celle qui correspond à "www.ygg.re".
+6. Dans les en-têtes de la requête, vous trouverez :
+   - La ligne "Cookie" : c'est votre cookie YGG complet.
+   - La ligne "User-Agent" : c'est votre User-Agent.
+
+Notez ces deux informations, elles seront nécessaires pour la configuration de YGG-Scrappey et Prowlarr.
+
 ## Configuration de Prowlarr
 
 1. Accédez à l'interface web de Prowlarr (http://votre-ip:9696).
 2. Allez dans "Indexers" > "Add Indexer".
 3. Recherchez "YGG cookie custom" dans la liste.
-4. Configurez-le en utilisant l'URL `http://ygg-scrappey:5000`.
+4. Dans la configuration de l'indexeur :
+   - Remplissez le champ "Cookie" avec le même cookie YGG que vous avez utilisé dans la configuration de YGG-Scrappey.
+   - Remplissez le champ "User-Agent" avec le User-Agent que vous avez obtenu de votre navigateur.
+
+Ces informations permettent à Prowlarr de s'authentifier correctement auprès de YGG via YGG-Scrappey.
 
 ## Mise à jour
 
