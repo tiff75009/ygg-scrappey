@@ -1,0 +1,40 @@
+version: '3'
+
+   services:
+     ygg-scrappey:
+       build:
+         context: .
+         dockerfile: ygg-scrappey/Dockerfile
+       container_name: ygg-scrappey
+       ports:
+         - "5000:5000"
+       environment:
+         - SCRAPPEY_KEY=votre_cle_scrappey_ici
+         - YGG_COOKIE=votre_cookie_ygg_ici
+         - HTTP_PROXY=votre_proxy_http_ici
+         - PORT=5000
+       volumes:
+         - ./ygg-scrappey/config:/app/config
+       restart: unless-stopped
+
+     prowlarr:
+       build:
+         context: .
+         dockerfile: prowlarr/Dockerfile
+       container_name: prowlarr
+       environment:
+         - PUID=1000
+         - PGID=1000
+         - TZ=Europe/Paris
+         - SERVER_IP=votre_ip_serveur_ici
+       volumes:
+         - ./prowlarr_config:/config
+       ports:
+         - "9696:9696"
+       restart: unless-stopped
+       depends_on:
+         - ygg-scrappey
+
+   networks:
+     default:
+       name: ygg-network
