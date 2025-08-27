@@ -1,5 +1,7 @@
 # YGG-Scrappey 🚀
 
+update : je viens de push une version patché.
+
 Proxy intelligent pour YGGtorrent avec contournement Cloudflare automatique et intégration Prowlarr/Radarr/Sonarr.
 
 ## ✨ Fonctionnalités
