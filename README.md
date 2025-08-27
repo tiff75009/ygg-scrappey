@@ -15,6 +15,7 @@ Proxy intelligent pour YGGtorrent avec contournement Cloudflare automatique et i
 
 ## 📋 Prérequis
 
+- Proxy Squid
 - Docker et Docker Compose installés
 - Un compte [Scrappey](https://scrappey.com) (clé API requise)
 - Un compte YGGtorrent actif
@@ -34,7 +35,7 @@ chmod +x install.sh
 Le script vous guidera pour configurer :
 1. Votre clé API Scrappey
 2. Votre cookie YGGtorrent
-3. Le proxy (optionnel)
+3. Le proxy
 4. L'IP du serveur
 
 ## 🔧 Installation Manuelle
